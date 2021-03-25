@@ -73,3 +73,33 @@ http://localhost:5000/api/profile/education/edu_id DELETE
 headers(x-auth-token, <token>)
 
 http://localhost:5000/api/profile/github/:username GET
+
+http://localhost:5000/api/posts POST
+headers(Content-Type, application/json; x-auth-token, <token>)
+{
+	"text": ""
+}
+
+http://localhost:5000/api/posts GET
+headers(x-auth-token, <token>)
+
+http://localhost:5000/api/posts/:id GET
+headers(Content-Type, application/json; x-auth-token, <token>)
+
+http://localhost:5000/api/posts DELETE
+headers(Content-Type, application/json; x-auth-token, <token>)
+
+http://localhost:5000/api/posts/like/:id PUT
+headers(Content-Type, application/json; x-auth-token, <token>)
+
+http://localhost:5000/api/posts/unlike/:id PUT
+headers(Content-Type, application/json; x-auth-token, <token>)
+
+http://localhost:5000/api/posts/api/comment/:id POST
+headers(Content-Type, application/json; x-auth-token, <token>)
+{
+	"text": ""
+}
+
+http://localhost:5000/api/posts/comment/:id/:comment_id DELETE
+headers(Content-Type, application/json; x-auth-token, <token>)
