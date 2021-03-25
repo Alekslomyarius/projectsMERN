@@ -1,6 +1,11 @@
 # projectsMERN
+# Quick Start
 ```npm install
 npm start
-npm run server```
+npm run server
+```
 Linux/mac
-* NODE_ENV=production node server.js
+=====================
+```
+NODE_ENV=production node server.js
+```
