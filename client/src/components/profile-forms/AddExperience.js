@@ -24,12 +24,12 @@ const AddExperience = ({ addExperience, history }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Add An Experience</h1>
+      <h1 className='large text-primary'>Добавьте информация о работе</h1>
       <p className='lead'>
-        <i className='fas fa-code-branch'></i> Add any developer/programming
-        positions that you have had in the past
+        <i className='fas fa-code-branch'></i> Добавьте текущее или предыдущее
+        место работы
       </p>
-      <small>* = required field</small>
+      <small>* = обязательно для заполнения</small>
       <form
         className='form'
         onSubmit={(e) => {
@@ -40,7 +40,7 @@ const AddExperience = ({ addExperience, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Job Title'
+            placeholder='* Должность'
             name='title'
             value={title}
             onChange={(e) => onChange(e)}
@@ -50,7 +50,7 @@ const AddExperience = ({ addExperience, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Company'
+            placeholder='* Название компании'
             name='company'
             value={company}
             onChange={(e) => onChange(e)}
@@ -60,17 +60,17 @@ const AddExperience = ({ addExperience, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Location'
+            placeholder='Город'
             name='location'
             value={location}
             onChange={(e) => onChange(e)}
           />
         </div>
         <div className='form-group'>
-          <h4>From Date</h4>
+          <h4>Время начала работы</h4>
           <input
             type='date'
-            name='from'
+            name='С'
             value={from}
             onChange={(e) => onChange(e)}
           />
@@ -87,14 +87,14 @@ const AddExperience = ({ addExperience, history }) => {
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
-            Current Job
+            Текущая работа
           </p>
         </div>
         <div className='form-group'>
-          <h4>To Date</h4>
+          <h4>Время окончания</h4>
           <input
             type='date'
-            name='to'
+            name='до'
             value={to}
             onChange={(e) => onChange(e)}
           />
@@ -104,7 +104,7 @@ const AddExperience = ({ addExperience, history }) => {
             name='description'
             cols='30'
             rows='5'
-            placeholder='Job Description'
+            placeholder='Описание'
             value={description}
             onChange={(e) => onChange(e)}
             disabled={toDateDisabled ? 'disabled' : ''}
@@ -112,7 +112,7 @@ const AddExperience = ({ addExperience, history }) => {
         </div>
         <input type='submit' className='btn btn-primary my-1' />
         <a className='btn btn-light my-1' href='dashboard.html'>
-          Go Back
+          Назад
         </a>
       </form>
     </Fragment>

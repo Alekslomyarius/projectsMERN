@@ -22,9 +22,9 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className='large text-primary'>Dashboard</h1>
+      <h1 className='large text-primary'>Информация о пользователе</h1>
       <p className='lead'>
-        <i className='fas fa-user'> Welcome {user && user.name}</i>
+        <i className='fas fa-user'> Здравствуй, {user && user.name}</i>
       </p>
       {profile !== null ? (
         <Fragment>
@@ -34,15 +34,18 @@ const Dashboard = ({
 
           <div className='my-2'>
             <button className='btn btn-danger' onClick={() => deleteAccount()}>
-              <i className='fas fa-user-minus'></i> Delete My Account
+              <i className='fas fa-user-minus'></i> Удалить аккаунт
             </button>
           </div>
         </Fragment>
       ) : (
         <Fragment>
-          <p>You have not yet setup a profile, please add some info</p>
+          <p>
+            Вы еще не настроили свой профиль, пожалуйста, добавьте информацию о
+            себе
+          </p>
           <Link to='/create-profile' className='btn btn-primary my-1'>
-            Create profile
+            Создать профиль
           </Link>
         </Fragment>
       )}

@@ -17,27 +17,20 @@ const AddEducation = ({ addEducation, history }) => {
 
   const [toDateDisabled, toggleDisabled] = useState(false);
 
-  const {
-    school,
-    degree,
-    fieldofstudy,
-    from,
-    to,
-    current,
-    description,
-  } = formData;
+  const { school, degree, fieldofstudy, from, to, current, description } =
+    formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Add Your Education</h1>
+      <h1 className='large text-primary'>Добавить информацию о учебе</h1>
       <p className='lead'>
-        <i className='fas fa-code-branch'></i> Add any school or bootcamp that
-        you have attended
+        <i className='fas fa-code-branch'></i> Добавьте информацию о
+        университете, в котором вы обучались
       </p>
-      <small>* = required field</small>
+      <small>* = обязательно для заполнения</small>
       <form
         className='form'
         onSubmit={(e) => {
@@ -48,7 +41,7 @@ const AddEducation = ({ addEducation, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* School or Bootcamp'
+            placeholder='* Название университета'
             name='school'
             value={school}
             onChange={(e) => onChange(e)}
@@ -58,7 +51,7 @@ const AddEducation = ({ addEducation, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Degree or Certificate'
+            placeholder='* Ученая степень'
             name='degree'
             value={degree}
             onChange={(e) => onChange(e)}
@@ -68,17 +61,17 @@ const AddEducation = ({ addEducation, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Field of Study'
+            placeholder='Специальность'
             name='fieldofstudy'
             value={fieldofstudy}
             onChange={(e) => onChange(e)}
           />
         </div>
         <div className='form-group'>
-          <h4>From Date</h4>
+          <h4>Время начала работы</h4>
           <input
             type='date'
-            name='from'
+            name='С'
             value={from}
             onChange={(e) => onChange(e)}
           />
@@ -95,21 +88,21 @@ const AddEducation = ({ addEducation, history }) => {
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
-            Current School
+            Текущее место учебы
           </p>
         </div>
         <div className='form-group'>
-          <h4>To Date</h4>
+          <h4>Окончание</h4>
           <input
             type='date'
-            name='to'
+            name='до'
             value={to}
             onChange={(e) => onChange(e)}
           />
         </div>
         <div className='form-group'>
           <textarea
-            name='description'
+            name='описание'
             cols='30'
             rows='5'
             placeholder='Program Description'
@@ -120,7 +113,7 @@ const AddEducation = ({ addEducation, history }) => {
         </div>
         <input type='submit' className='btn btn-primary my-1' />
         <a className='btn btn-light my-1' href='dashboard.html'>
-          Go Back
+          Назад
         </a>
       </form>
     </Fragment>
