@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profile';
@@ -15,9 +15,7 @@ const AddEducation = ({ addEducation, history }) => {
     description: '',
   });
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
-
-  const { school, degree, fieldofstudy, from, to, current, description } =
+  const { school, degree, fieldofstudy, from, to, description, current } =
     formData;
 
   const onChange = (e) =>
@@ -25,12 +23,12 @@ const AddEducation = ({ addEducation, history }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Добавить информацию о учебе</h1>
+      <h1 className='large text-primary'>Add Your Education</h1>
       <p className='lead'>
-        <i className='fas fa-code-branch'></i> Добавьте информацию о
-        университете, в котором вы обучались
+        <i className='fas fa-code-branch' /> Add any school or bootcamp that you
+        have attended
       </p>
-      <small>* = обязательно для заполнения</small>
+      <small>* = required field</small>
       <form
         className='form'
         onSubmit={(e) => {
@@ -41,40 +39,35 @@ const AddEducation = ({ addEducation, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Название университета'
+            placeholder='* School or Bootcamp'
             name='school'
             value={school}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             required
           />
         </div>
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Ученая степень'
+            placeholder='* Degree or Certificate'
             name='degree'
             value={degree}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             required
           />
         </div>
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Специальность'
+            placeholder='Field of Study'
             name='fieldofstudy'
             value={fieldofstudy}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
           />
         </div>
         <div className='form-group'>
-          <h4>Время начала работы</h4>
-          <input
-            type='date'
-            name='С'
-            value={from}
-            onChange={(e) => onChange(e)}
-          />
+          <h4>From Date</h4>
+          <input type='date' name='from' value={from} onChange={onChange} />
         </div>
         <div className='form-group'>
           <p>
@@ -83,45 +76,42 @@ const AddEducation = ({ addEducation, history }) => {
               name='current'
               checked={current}
               value={current}
-              onChange={(e) => {
-                setFormData({ ...formData, current: !current });
-                toggleDisabled(!toDateDisabled);
-              }}
+              onChange={() => setFormData({ ...formData, current: !current })}
             />{' '}
-            Текущее место учебы
+            Current School
           </p>
         </div>
         <div className='form-group'>
-          <h4>Окончание</h4>
+          <h4>To Date</h4>
           <input
             type='date'
-            name='до'
+            name='to'
             value={to}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
+            disabled={current}
           />
         </div>
         <div className='form-group'>
           <textarea
-            name='описание'
+            name='description'
             cols='30'
             rows='5'
             placeholder='Program Description'
             value={description}
-            onChange={(e) => onChange(e)}
-            disabled={toDateDisabled ? 'disabled' : ''}
-          ></textarea>
+            onChange={onChange}
+          />
         </div>
         <input type='submit' className='btn btn-primary my-1' />
-        <a className='btn btn-light my-1' href='dashboard.html'>
-          Назад
-        </a>
+        <Link className='btn btn-light my-1' to='/dashboard'>
+          Go Back
+        </Link>
       </form>
     </Fragment>
   );
 };
 
 AddEducation.propTypes = {
-  AddEducation: PropTypes.func.isRequired,
+  addEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addEducation })(withRouter(AddEducation));
+export default connect(null, { addEducation })(AddEducation);
