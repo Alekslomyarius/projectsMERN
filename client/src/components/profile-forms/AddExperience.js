@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
@@ -15,8 +15,6 @@ const AddExperience = ({ addExperience, history }) => {
     description: '',
   });
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
-
   const { company, title, location, from, to, current, description } = formData;
 
   const onChange = (e) =>
@@ -24,12 +22,12 @@ const AddExperience = ({ addExperience, history }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Добавьте информация о работе</h1>
+      <h1 className='large text-primary'>Add An Experience</h1>
       <p className='lead'>
-        <i className='fas fa-code-branch'></i> Добавьте текущее или предыдущее
-        место работы
+        <i className='fas fa-code-branch' /> Add any developer/programming
+        positions that you have had in the past
       </p>
-      <small>* = обязательно для заполнения</small>
+      <small>* = required field</small>
       <form
         className='form'
         onSubmit={(e) => {
@@ -40,40 +38,35 @@ const AddExperience = ({ addExperience, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Должность'
+            placeholder='* Job Title'
             name='title'
             value={title}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             required
           />
         </div>
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Название компании'
+            placeholder='* Company'
             name='company'
             value={company}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             required
           />
         </div>
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Город'
+            placeholder='Location'
             name='location'
             value={location}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
           />
         </div>
         <div className='form-group'>
-          <h4>Время начала работы</h4>
-          <input
-            type='date'
-            name='С'
-            value={from}
-            onChange={(e) => onChange(e)}
-          />
+          <h4>From Date</h4>
+          <input type='date' name='from' value={from} onChange={onChange} />
         </div>
         <div className='form-group'>
           <p>
@@ -82,21 +75,21 @@ const AddExperience = ({ addExperience, history }) => {
               name='current'
               checked={current}
               value={current}
-              onChange={(e) => {
+              onChange={() => {
                 setFormData({ ...formData, current: !current });
-                toggleDisabled(!toDateDisabled);
               }}
             />{' '}
-            Текущая работа
+            Current Job
           </p>
         </div>
         <div className='form-group'>
-          <h4>Время окончания</h4>
+          <h4>To Date</h4>
           <input
             type='date'
-            name='до'
+            name='to'
             value={to}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
+            disabled={current}
           />
         </div>
         <div className='form-group'>
@@ -104,23 +97,22 @@ const AddExperience = ({ addExperience, history }) => {
             name='description'
             cols='30'
             rows='5'
-            placeholder='Описание'
+            placeholder='Job Description'
             value={description}
-            onChange={(e) => onChange(e)}
-            disabled={toDateDisabled ? 'disabled' : ''}
-          ></textarea>
+            onChange={onChange}
+          />
         </div>
         <input type='submit' className='btn btn-primary my-1' />
-        <a className='btn btn-light my-1' href='dashboard.html'>
-          Назад
-        </a>
+        <Link className='btn btn-light my-1' to='/dashboard'>
+          Go Back
+        </Link>
       </form>
     </Fragment>
   );
 };
 
 AddExperience.propTypes = {
-  AddExperience: PropTypes.func.isRequired,
+  addExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(withRouter(AddExperience));
+export default connect(null, { addExperience })(AddExperience);
